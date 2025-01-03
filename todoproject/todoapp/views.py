@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
+# @cache_page(60 * 15)
 def task_list(request):
     tasks = Task.objects.all()
     return render(request, "todoapp/task_list.html", {"tasks": tasks})
